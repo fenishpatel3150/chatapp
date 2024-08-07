@@ -2,6 +2,7 @@ import 'package:chatapp/controller/LoginController/LoginController.dart';
 import 'package:chatapp/view/Home/HomeScreen.dart';
 import 'package:chatapp/view/Login/LoginScreen/LoginPage.dart';
 import 'package:chatapp/view/Login/Signup/SignupScreen.dart';
+import 'package:chatapp/view/SplashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class SignupScreen extends StatelessWidget {
         backgroundColor: const Color(0xff18171f),
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Get.to(SplashScreen());
           },
           icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
@@ -118,7 +119,7 @@ class SignupScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 20),
                           child: GestureDetector(
                             onTap: () {
-                              loginController.togglePasswordVisibility();
+                              loginController.validation();
                             },
                             child: Icon(
                               loginController.validationComplete.value
@@ -151,7 +152,7 @@ class SignupScreen extends StatelessWidget {
                       style: const TextStyle(color: Colors.white),
                       controller: loginController.textconfimpassword,
                       obscureText:
-                      !loginController.validationComplete.value,
+                      !loginController.validationConfirm.value,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -166,6 +167,21 @@ class SignupScreen extends StatelessWidget {
                           child: Icon(Icons.lock, color: Colors.grey),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
+                        suffix: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: GestureDetector(
+                            onTap: () {
+                              loginController.confirmValidation();
+                            },
+                            child: Icon(
+                              loginController.validationConfirm.value
+                                  ? CupertinoIcons.eye_solid
+                                  : CupertinoIcons.eye_slash,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -183,7 +199,6 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 50),
               InkWell(
                 onTap: () async {
-
                   if (logindata.currentState!.validate()) {
                     await loginController.login();
                     loginController.textemail.clear();

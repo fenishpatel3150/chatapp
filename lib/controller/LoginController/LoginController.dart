@@ -11,11 +11,14 @@ class LoginController extends GetxController {
   TextEditingController textemail = TextEditingController();
   TextEditingController textpassword = TextEditingController();
   TextEditingController textconfimpassword = TextEditingController();
-
   RxBool validationComplete = false.obs;
+  RxBool validationConfirm = false.obs;
 
-  void togglePasswordVisibility() {
+  void validation() {
     validationComplete.value = !validationComplete.value;
+  }
+  void confirmValidation() {
+    validationConfirm.value = !validationConfirm.value;
   }
 
   Future<void> login() async {

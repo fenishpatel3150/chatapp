@@ -124,7 +124,7 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 20),
                           child: GestureDetector(
                             onTap: () {
-                              loginController.togglePasswordVisibility();
+                              loginController.validation();
                             },
                             child: Icon(
                               loginController.validationComplete.value
