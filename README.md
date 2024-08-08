@@ -12,7 +12,7 @@ This project is a Flutter application that uses Firebase for user authentication
 - **GetX State Management**: Efficient state management using GetX for improved performance and readability.
 - **Responsive UI**: User-friendly and responsive login interface compatible with both iOS and Android devices.
 - **Error Handling**: Comprehensive error handling to provide feedback to users on authentication issues.
-![Screenshot_20240807_215813]()
+
 
 ## Screenshots
 <details> 
