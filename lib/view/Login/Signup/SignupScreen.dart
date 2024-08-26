@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../helper/LoginService/Google_Sign_In_service.dart';
+
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
@@ -199,12 +201,16 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 50),
               InkWell(
                 onTap: () async {
-                  if (logindata.currentState!.validate()) {
-                    await loginController.login();
-                    loginController.textemail.clear();
-                    loginController.textpassword.clear();
-                    loginController.textconfimpassword.clear();
-                  }
+
+                  // if (logindata.currentState!.validate()) {
+                  //   await loginController.Signup();
+                  //   loginController.textemail.clear();
+                  //   loginController.textpassword.clear();
+                  //   loginController.textconfimpassword.clear();
+                  // }
+
+
+
                 },
                 child: Container(
                   height: 60,
@@ -230,24 +236,31 @@ class SignupScreen extends StatelessWidget {
                 style: GoogleFonts.lato(color: Colors.white),
               ),
               const SizedBox(height: 20),
-              Container(
-                height: 60,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/login/image2.png', height: 40),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'Google',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
+              InkWell(
+                onTap: ()
+                async {
+                  String status=await GoogleSignInService.googleSignInSarvice.signInWithGoogle();
+                },
+
+                child: Container(
+                  height: 60,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/login/image2.png', height: 40),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Google',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

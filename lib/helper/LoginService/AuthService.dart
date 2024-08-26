@@ -13,4 +13,7 @@ class AuthService
     Future<UserCredential> userCredential =auth.createUserWithEmailAndPassword(email: email, password: password);
   }
 
+
+
+
 }

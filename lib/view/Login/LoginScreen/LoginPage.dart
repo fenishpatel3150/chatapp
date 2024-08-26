@@ -1,4 +1,5 @@
 import 'package:chatapp/controller/LoginController/LoginController.dart';
+import 'package:chatapp/helper/LoginService/Google_Sign_In_service.dart';
 import 'package:chatapp/view/Home/HomeScreen.dart';
 import 'package:chatapp/view/Login/Signup/SignupScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -104,8 +105,7 @@ class LoginPage extends StatelessWidget {
                         () => TextFormField(
                       style: const TextStyle(color: Colors.white),
                       controller: loginController.textpassword,
-                      obscureText:
-                      !loginController.validationComplete.value,
+                      obscureText: !loginController.validationComplete.value,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -193,25 +193,31 @@ class LoginPage extends StatelessWidget {
                 'or continue with',
                 style: GoogleFonts.lato(color: Colors.white),
               ),
-              const SizedBox(height: 20),
-              Container(
-                height: 60,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/login/image2.png', height: 40),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'Google',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
+               SizedBox(height: 20),
+              InkWell(
+                onTap: ()
+                async {
+                    String status=await GoogleSignInService.googleSignInSarvice.signInWithGoogle();
+                },
+                child: Container(
+                  height: 60,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/login/image2.png', height: 40),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Google',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
