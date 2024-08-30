@@ -11,8 +11,12 @@ class LoginController extends GetxController {
 
   FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController textemail = TextEditingController();
+  TextEditingController txtemail = TextEditingController();
+  TextEditingController textname = TextEditingController();
+  TextEditingController txtname = TextEditingController();
   TextEditingController txtphone = TextEditingController();
   TextEditingController textpassword = TextEditingController();
+  TextEditingController txtpassword = TextEditingController();
   TextEditingController textconfimpassword = TextEditingController();
   RxBool validationComplete = false.obs;
   RxBool validationConfirm = false.obs;
@@ -21,6 +25,7 @@ class LoginController extends GetxController {
   RxString url = "".obs;
   RxString receiverEmail ="".obs;
   RxString receiverName ="".obs;
+  RxString receiverImage ="".obs;
 
   void validation() {
     validationComplete.value = !validationComplete.value;
@@ -54,17 +59,24 @@ class LoginController extends GetxController {
     }
   }
 
-  void getRecevier(String email,String name)
+  void getRecevier(String email,String name,String image)
   {
        receiverEmail.value =email;
        receiverName.value =name;
+       receiverImage.value=image;
+
   }
   void getUserDetail() {
     User? user = GoogleSignInService.googleSignInSarvice.currentUser();
     if (user != null) {
-      email.value = user.email!;
-      url.value = user.photoURL!;
-      name.value = user.displayName!;
+      email.value = user.email ?? "No email provided";
+      url.value = user.photoURL ?? "No photo URL";
+      name.value = user.displayName ?? "No display name";
+    } else {
+      email.value = "No email";
+      url.value = "No photo URL";
+      name.value = "No display name";
     }
   }
+
 }
