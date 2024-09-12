@@ -25,6 +25,7 @@ class LoginController extends GetxController {
   RxString url = "".obs;
   RxString receiverEmail ="".obs;
   RxString receiverName ="".obs;
+  RxString receiverToken ="".obs;
   RxString receiverImage ="".obs;
 
   void validation() {
@@ -59,11 +60,12 @@ class LoginController extends GetxController {
     }
   }
 
-  void getRecevier(String email,String name,String image)
+  void getRecevier(String email,String name,String image,String token)
   {
        receiverEmail.value =email;
        receiverName.value =name;
        receiverImage.value=image;
+       receiverToken.value=token;
 
   }
   void getUserDetail() {

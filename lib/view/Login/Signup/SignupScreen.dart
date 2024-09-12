@@ -39,7 +39,7 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 200),
+                padding:  EdgeInsets.only(right: 200.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,61 +48,65 @@ class SignupScreen extends StatelessWidget {
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 40.sp),
+                          fontSize: 30.sp),
                     ),
                     Text(
                       'started',
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 40.sp),
+                          fontSize:
+                          30.sp),
                     ),
                   ],
                 ),
               ),
                SizedBox(height: 20),
               Center(
-                child: Container(
-                  width: 330.sp,
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: loginController.textname,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: const BorderSide(color: Colors.grey),
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
+                  child: Container(
+                    width: 330.h,
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: loginController.textname,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.r),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.r),
+                        ),
+                        hintText: 'Name',
+                        prefixIcon:  Padding(
+                          padding: EdgeInsets.only(left: 10.h,),
+                          child: Icon(Icons.person, color: Colors.grey),
+                        ),
+                        hintStyle: const TextStyle(color: Colors.grey),
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      hintText: 'Name',
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(left: 10,),
-                        child: Icon(Icons.person, color: Colors.grey),
-                      ),
-                      hintStyle: const TextStyle(color: Colors.grey),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Center(
-                child: Container(
-                  width: 330.sp,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
                   child: TextFormField(
                     style: const TextStyle(color: Colors.white),
                     controller: loginController.txtemail,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(50.r),
                         borderSide: const BorderSide(color: Colors.grey),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(50.r),
                       ),
                       hintText: 'Email Id',
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(left: 10,),
+                      prefixIcon:  Padding(
+                        padding: EdgeInsets.only(left: 10.h,),
                         child: Icon(Icons.email, color: Colors.grey),
                       ),
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -121,10 +125,10 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Center(
-                child: Container(
-                  width: 330.sp,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
                   child: Obx(
                         () => TextFormField(
                       style: const TextStyle(color: Colors.white),
@@ -133,20 +137,20 @@ class SignupScreen extends StatelessWidget {
                       !loginController.validationComplete.value,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                           borderSide: const BorderSide(color: Colors.grey),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                         ),
                         hintText: 'Password',
-                        prefixIcon: const Padding(
-                          padding: EdgeInsets.only(left: 20),
+                        prefixIcon:  Padding(
+                          padding: EdgeInsets.only(left: 20.h),
                           child: Icon(Icons.lock, color: Colors.grey),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
                         suffix: Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding:  EdgeInsets.only(right: 20.h),
                           child: GestureDetector(
                             onTap: () {
                               loginController.validation();
@@ -173,10 +177,10 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Center(
-                child: Container(
-                  width: 330.sp,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
                   child: Obx(
                         () => TextFormField(
                       style: const TextStyle(color: Colors.white),
@@ -185,20 +189,20 @@ class SignupScreen extends StatelessWidget {
                       !loginController.validationConfirm.value,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                           borderSide: const BorderSide(color: Colors.grey),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                         ),
                         hintText: 'Confirm Password',
-                        prefixIcon: const Padding(
-                          padding: EdgeInsets.only(left: 20),
+                        prefixIcon:  Padding(
+                          padding: EdgeInsets.only(left: 20.h),
                           child: Icon(Icons.lock, color: Colors.grey),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
                         suffix: Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding:  EdgeInsets.only(right: 20.h),
                           child: GestureDetector(
                             onTap: () {
                               loginController.confirmValidation();
@@ -226,7 +230,7 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+               SizedBox(height: 30.h),
               InkWell(
                 onTap: () async {
                   if (logindata.currentState!.validate()) {
@@ -235,41 +239,45 @@ class SignupScreen extends StatelessWidget {
                         name: loginController.textname.text,
                         phone: '7846532122',
                         email: loginController.textemail.text,
-                        photourl: 'https://wallpapercave.com/wp/wp3323499.png');
+                        photourl: 'https://pin.it/5kgg9Qy6d');
                     Get.toNamed("/home");
                     UserService.userService.addUser(userModal);
                     loginController.textname.clear();
                     loginController.textemail.clear();
                     loginController.textpassword.clear();
+                    UserService.userService.updateUserToken();
 
 
 
                   }
                 },
-                child: Container(
-                  height: 50.sp,
-                  width: 330.sp,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Sign up',
-                      style: GoogleFonts.lato(
-                          color: const Color(0xff18171f),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
+                  child: Container(
+                    height: 50.h,
+                    width: 330.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Sign up',
+                        style: GoogleFonts.lato(
+                            color: const Color(0xff18171f),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.h),
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 15.h),
               Text(
                 'or continue with',
                 style: GoogleFonts.lato(color: Colors.white),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               InkWell(
                 onTap: () async {
                   String status = await GoogleSignInService.googleSignInSarvice
@@ -288,33 +296,37 @@ class SignupScreen extends StatelessWidget {
                           photourl: user.photoURL);
                       Get.toNamed('/home');
                       UserService.userService.addUser(userModal);
+                      UserService.userService.updateUserToken();
                     }
                   }
                 },
 
-                child: Container(
-                  height: 50.sp,
-                  width: 330.sp,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/login/image2.png', height: 40),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'Google',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        )
-                      ],
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
+                  child: Container(
+                    height: 50.h,
+                    width: 330.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.r),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/login/image2.png', height: 40.h),
+                           SizedBox(width: 10.h),
+                           Text(
+                            'Google',
+                            style: TextStyle(color: Colors.white, fontSize: 20.h),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [

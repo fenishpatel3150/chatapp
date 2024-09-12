@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 200),
+                padding:  EdgeInsets.only(right: 150.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -45,43 +45,37 @@ class LoginPage extends StatelessWidget {
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 30.sp),
+                          fontSize: 35.sp),
                     ),
                     Text(
-                      'Welcome',
+                      'Welcome\nBack',
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 35.sp),
                     ),
-                    Text(
-                      'Back',
-                      style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35.sp),
-                    ),
+
                   ],
                 ),
               ),
-              const SizedBox(height: 50),
+               SizedBox(height: 50.h),
               Center(
-                child: Container(
-                  width: 330.w,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
                   child: TextFormField(
                     style: const TextStyle(color: Colors.white),
                     controller: loginController.textemail,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(50.r),
                         borderSide: const BorderSide(color: Colors.grey),
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(50.r),
                       ),
                       hintText: 'Enter your Email Id',
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(left: 10),
+                      prefixIcon:  Padding(
+                        padding: EdgeInsets.only(left: 10.h),
                         child: Icon(Icons.email, color: Colors.grey),
                       ),
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -101,10 +95,10 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 15.h),
               Center(
-                child: Container(
-                  width: 330.w,
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
                   child: Obx(
                     () => TextFormField(
                       style: const TextStyle(color: Colors.white),
@@ -112,20 +106,20 @@ class LoginPage extends StatelessWidget {
                       obscureText: !loginController.validationComplete.value,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                           borderSide: const BorderSide(color: Colors.grey),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                         ),
                         hintText: 'Enter your Password',
-                        prefixIcon: const Padding(
-                          padding: EdgeInsets.only(left: 20),
-                          child: Icon(Icons.lock, color: Colors.grey),
+                        prefixIcon:  Padding(
+                          padding: EdgeInsets.only(left: 20.h),
+                          child: const Icon(Icons.lock, color: Colors.grey),
                         ),
                         hintStyle: const TextStyle(color: Colors.grey),
                         suffix: Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding:  EdgeInsets.only(right: 20.h),
                           child: GestureDetector(
                             onTap: () {
                               loginController.validation();
@@ -152,12 +146,12 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 30),
+                    padding:  EdgeInsets.only(right: 20.h),
                     child: Text(
                       'Forget Password?',
                       style: GoogleFonts.lato(color: Colors.white),
@@ -165,7 +159,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+               SizedBox(height: 30.h),
               InkWell(
                 onTap: () async {
                   if (logindata.currentState!.validate()) {
@@ -174,38 +168,41 @@ class LoginPage extends StatelessWidget {
                         name: 'fenish',
                         phone: '7846532122',
                         email: loginController.textemail.text,
-                        photourl:
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOuxrvcNMfGLh73uKP1QqYpKoCB0JLXiBMvA&s');
+                        photourl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOuxrvcNMfGLh73uKP1QqYpKoCB0JLXiBMvA&s');
 
                     UserService.userService.addUser(userModal);
                     loginController.textemail.clear();
                     loginController.textpassword.clear();
+                    UserService.userService.updateUserToken();
                   }
                 },
-                child: Container(
-                  height: 50.h,
-                  width: 330.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Log In',
-                      style: GoogleFonts.lato(
-                          color: const Color(0xff18171f),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp),
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
+                  child: Container(
+                    height: 50.h,
+                    width: 330.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50.r),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Log In',
+                        style: GoogleFonts.lato(
+                            color: const Color(0xff18171f),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp),
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 20.h),
               Text(
                 'or continue with',
                 style: GoogleFonts.lato(color: Colors.white),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
               InkWell(
                 onTap: () async {
 
@@ -226,34 +223,37 @@ class LoginPage extends StatelessWidget {
 
                         Get.toNamed("/home");
                         UserService.userService.addUser(userModal);
-
+                        UserService.userService.updateUserToken();
                       }
                   }
                 },
-                child: Container(
-                  height: 50.h,
-                  width: 330.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/login/image2.png', height: 40.sp),
-                        const SizedBox(width: 10),
-                         Text(
-                          'Google',
-                          style: TextStyle(color: Colors.white,
-                              fontSize: 20.sp),
-                        )
-                      ],
+                child: Padding(
+                  padding:  EdgeInsets.only(left: 10.h,right: 10.h),
+                  child: Container(
+                    height: 50.h,
+                    width: 330.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.r),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/login/image2.png', height: 40.sp),
+                           SizedBox(width: 10.h),
+                           Text(
+                            'Google',
+                            style: TextStyle(color: Colors.white,
+                                fontSize: 20.sp),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: 10.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

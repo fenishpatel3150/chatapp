@@ -7,21 +7,24 @@ import 'package:chatapp/view/Login/LoginScreen/LoginPage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+   HomeScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
 
     return Scaffold(
+      key: _scaffoldKey,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: const Color(0xff2a2f35),
         color: const Color(0xff202328),
-
         items: const [
           Icon(CupertinoIcons.star, color: Colors.white),
           Icon(CupertinoIcons.clock, color: Colors.white),
@@ -31,35 +34,47 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: const Color(0xff2a2f35),
+      drawer: Drawer(
+        // Your Drawer widget here
+      ),
       body: SingleChildScrollView(
-
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 70),
+              padding: EdgeInsets.only(top: 60.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    height: 40.h,
-                    width: 40.w,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: NetworkImage(GoogleSignInService.googleSignInSarvice.currentUser()?.photoURL??'https://pin.it/19HCjl8fu')
-                          ,fit: BoxFit.cover)
+                  InkWell(
+                    onTap:(){
+                      _scaffoldKey.currentState?.openDrawer();
+                      },
+                    child: Container(
+                      height: 40.h,
+                      width: 40.h,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(40.r),
+                          image: DecorationImage(
+                              image: NetworkImage(GoogleSignInService
+                                      .googleSignInSarvice
+                                      .currentUser()
+                                      ?.photoURL ??
+                                  'https://pin.it/19HCjl8fu'),
+                              fit: BoxFit.cover)),
                     ),
                   ),
-                  const Text(
+                   Text(
                     'Chats',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   Container(
                     height: 40.h,
-                    width: 40.w,
+                    width: 40.h,
                     decoration: BoxDecoration(
                       color: const Color(0xff219fe6),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(40.r),
                     ),
                     child: IconButton(
                       onPressed: () {
@@ -72,32 +87,32 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Stack(
               children: [
                 Container(
                   height: 250.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(50.r),
                     color: const Color(0xff202328),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 30.h),
                         child: Text('Recents',
                             style: TextStyle(color: Colors.white)),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 30.h),
                         child: Text('Favorites',
                             style: TextStyle(color: Colors.grey)),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 30.h),
                         child: Text('Missed',
                             style: TextStyle(color: Colors.grey)),
                       ),
@@ -105,78 +120,84 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 80),
+                  padding: EdgeInsets.only(top: 70.h),
                   child: Container(
-                    height: 750.sp,
+                    height: 750.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      color: const Color(0xff2a2f35),
+                      borderRadius: BorderRadius.only(topLeft:Radius.circular(60.r),topRight: Radius.circular(60.r)),
+                      color:  Color(0xff2a2f35),
                     ),
-                    child: StreamBuilder(
-                      stream: UserService.userService.getUser(),
-                      builder: (BuildContext context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text(
-                              '${snapshot.error}',
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          );
-                        }
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        var queryData = snapshot.data!.docs;
-                        List users =
-                        queryData.map((e) => e.data()).toList();
-                        List<UserModel> userList =
-                        users.map((e) => UserModel.fromJson(e)).toList();
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: userList.length,
-                          itemBuilder: (BuildContext context, int index) => Padding(
-                            padding: const EdgeInsets.only(left: 30, top: 10),
-                            child: ListTile(
-                              onTap: () {
-                                loginController.getRecevier(
-                                  userList[index].email!,
-                                  userList[index].name!,
-                                  userList[index].photourl!,
-                                );
-                                Get.toNamed("/chat");
-                              },
-                              leading: Container(
-                                height: 50.h,
-                                width: 50.w,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      userList[index].photourl ??
-                                          'https://wallpapercave.com/wp/wp3323499.png',
+                    child: SingleChildScrollView(
+                      child: SizedBox(
+                        height: 750.h,
+                        child: StreamBuilder(
+                          stream: UserService.userService.getUser(),
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Center(
+                                child: Text(
+                                  '${snapshot.error}',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              );
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            var queryData = snapshot.data!.docs;
+                            List users = queryData.map((e) => e.data()).toList();
+                            List<UserModel> userList =
+                                users.map((e) => UserModel.fromJson(e)).toList();
+                            return Column(
+                              children: List.generate(
+                                userList.length,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(left: 10.h, top: 10.h),
+                                  child: ListTile(
+                                    onTap: () {
+                                      loginController.getRecevier(
+                                        userList[index].email!,
+                                        userList[index].name!,
+                                        userList[index].photourl!,
+                                        userList[index].token!,
+                                      );
+                                      Get.toNamed("/chat");
+                                    },
+                                    leading: Container(
+                                      height:45.h,
+                                      width: 45.h,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(50.r),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            userList[index].photourl ??
+                                                'https://pin.it/5kgg9Qy6d',
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
-                                    fit: BoxFit.cover,
+                                    title: Text(
+                                      userList[index].name!,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                    subtitle: Text(
+                                      userList[index].email!,
+                                      style: const TextStyle(
+                                          color: Color(0xff555a5e)),
+                                    ),
                                   ),
                                 ),
                               ),
-                              title: Text(
-                                userList[index].name!,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              subtitle: Text(
-                                userList[index].email!,
-                                style: const TextStyle(color: Color(0xff555a5e)),
-                              ),
-                            ),
-                          ),
-                        );
-
-                      },
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
                 ),

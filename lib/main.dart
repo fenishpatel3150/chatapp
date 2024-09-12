@@ -1,5 +1,6 @@
 import 'package:chatapp/controller/LoginController/LoginController.dart';
 import 'package:chatapp/helper/LoginService/Google_Sign_In_service.dart';
+import 'package:chatapp/helper/Notification/messageService.dart';
 import 'package:chatapp/view/ChatScreen/ChatScreen.dart';
 import 'package:chatapp/view/Home/HomeScreen.dart';
 import 'package:chatapp/view/Login/LoginScreen/LoginPage.dart';
@@ -13,6 +14,8 @@ import 'package:get/get.dart';
 
 
 import 'firebase_options.dart';
+import 'helper/Notification/apiService.dart';
+import 'helper/Notification/notificationService.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +23,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+
+  NotificationServices.notificationServices.initNotification();
+  await FirebaseMessagingServices.firebaseMessagingServices.requestPermission();
+  await FirebaseMessagingServices.firebaseMessagingServices.generateDeviceToken();
+  ApiService.apiService.getServerToken();
+  FirebaseMessagingServices.firebaseMessagingServices.onMessageListener();
 
   runApp(const MyApp());
 }
