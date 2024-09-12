@@ -202,6 +202,7 @@ FirebaseFirestore.instance.collection('chats').doc(chatId).collection('messages'
         <td><img src="https://github.com/user-attachments/assets/b570be73-b579-46a9-b84d-a006c22d672b" alt="" width="350" height="auto"></td>
         <td><img src="https://github.com/user-attachments/assets/f8694198-2242-43cb-a579-48e32e8b7ca5" alt="" width="350" height="auto"></td>
         <td><img src="https://github.com/user-attachments/assets/de929c4c-f3d5-4635-84af-e2eba347ba27" alt="" width="350" height="auto"></td>
+        <td><img src="https://github.com/user-attachments/assets/4a85d030-5500-4ecf-b6ce-20e630166497" alt="" width="350" height="auto"></td>
     </td>
       </tr>
     </table>   
