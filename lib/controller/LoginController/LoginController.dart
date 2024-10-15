@@ -63,21 +63,26 @@ class LoginController extends GetxController {
   void getRecevier(String email,String name,String image,String token)
   {
        receiverEmail.value =email;
+       print(receiverEmail.value);
        receiverName.value =name;
        receiverImage.value=image;
        receiverToken.value=token;
+       print(receiverToken.value);
 
+       update();
   }
-  void getUserDetail() {
+  Future<void> getUserDetail() async {
     User? user = GoogleSignInService.googleSignInSarvice.currentUser();
     if (user != null) {
       email.value = user.email ?? "No email provided";
       url.value = user.photoURL ?? "No photo URL";
       name.value = user.displayName ?? "No display name";
+      // receiverToken.value = user.refreshToken ?? "No Token";
     } else {
       email.value = "No email";
       url.value = "No photo URL";
       name.value = "No display name";
+      // receiverToken.value = "No Token";
     }
   }
 

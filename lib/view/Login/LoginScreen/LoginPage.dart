@@ -1,6 +1,7 @@
 import 'package:chatapp/controller/LoginController/LoginController.dart';
 import 'package:chatapp/helper/LoginService/FireStorageService.dart';
 import 'package:chatapp/helper/LoginService/Google_Sign_In_service.dart';
+import 'package:chatapp/helper/Notification/messageService.dart';
 import 'package:chatapp/model/userModel.dart';
 import 'package:chatapp/view/Home/HomeScreen.dart';
 import 'package:chatapp/view/Login/Signup/SignupScreen.dart';
@@ -164,12 +165,14 @@ class LoginPage extends StatelessWidget {
                 onTap: () async {
                   if (logindata.currentState!.validate()) {
                     await loginController.login();
+                    String? token = await FirebaseMessagingServices.firebaseMessagingServices.generateDeviceToken();
                     UserModel userModal = UserModel(
                         name: 'fenish',
                         phone: '7846532122',
                         email: loginController.textemail.text,
-                        photourl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOuxrvcNMfGLh73uKP1QqYpKoCB0JLXiBMvA&s');
-
+                        photourl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOuxrvcNMfGLh73uKP1QqYpKoCB0JLXiBMvA&s',
+                        token: token,
+                    );
                     UserService.userService.addUser(userModal);
                     loginController.textemail.clear();
                     loginController.textpassword.clear();

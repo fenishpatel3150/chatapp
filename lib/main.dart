@@ -24,10 +24,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  NotificationServices.notificationServices.initNotification();
+
   await FirebaseMessagingServices.firebaseMessagingServices.requestPermission();
+  NotificationServices.notificationServices.initNotification();
   await FirebaseMessagingServices.firebaseMessagingServices.generateDeviceToken();
-  ApiService.apiService.getServerToken();
+  // ApiService.apiService.getServerToken();
   FirebaseMessagingServices.firebaseMessagingServices.onMessageListener();
 
   runApp(const MyApp());

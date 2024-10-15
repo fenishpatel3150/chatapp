@@ -247,8 +247,6 @@ class SignupScreen extends StatelessWidget {
                     loginController.textpassword.clear();
                     UserService.userService.updateUserToken();
 
-
-
                   }
                 },
                 child: Padding(
